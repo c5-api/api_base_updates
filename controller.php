@@ -15,7 +15,7 @@ class ApiBaseUpdatesPackage extends Package {
 	}
 
 	public function on_start() {
-		define('C5_API_UPDATE_URL', 'http://c5api.com/updates.php');
+		define('C5_API_UPDATE_URL', 'http://c5api.com/index.php/tools/updates');
 	}
 
 	public function install() {
