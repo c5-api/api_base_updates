@@ -4,7 +4,7 @@ class ApiBaseUpdatesPackage extends Package {
 
 	protected $pkgHandle = 'api_base_updates';
 	protected $appVersionRequired = '5.6.0';
-	protected $pkgVersion = '0.9';
+	protected $pkgVersion = '0.91';
 
 	public function getPackageName() {
 		return t("Api:Base:Updates");

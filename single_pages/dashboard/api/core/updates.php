@@ -1,6 +1,7 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.');
-echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Updates'), t('Check for updates for base api packages'), false, false);
-	echo '<div class="ccm-pane-body" style="padding-bottom: 0px">'; ?>
+echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Updates'), t('Check for updates for base api packages'), false, false);?>
+	<div class="ccm-pane-body" style="padding-bottom: 0px">
+		<div class="alert alert-info"><?php echo t('Note: Packages will be downloaded, but not <a href="%s">installed</a> or <a href="%s">updated</a>.', View::url('/dashboard/extend/install/'), View::url('/dashboard/extend/update/'))?></div>
 		<table class="table">
 			<thead>
 				<td>
@@ -30,7 +31,7 @@ echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Upda
 							<?php echo $arr->version;?>
 						</td>
 						<td>
-							<a target="_blank" href="<?php echo $arr->url;?>"><?php echo t('Download')?></a>
+							<a href="<?php echo $this->action('get', $handle);?>"><?php echo t('Download')?></a>
 						</td>
 					</tr>
 				<?php }
