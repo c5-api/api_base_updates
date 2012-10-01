@@ -11,10 +11,12 @@ class DashboardApiCoreUpdatesController extends DashboardBaseController {
 			$arr = $json->decode($cont);
 
 			$list = PackageList::get()->getPackages();
+			$all = $arr;
 
 			foreach($list as $pkg) {
 				$handle = $pkg->getPackageHandle();
 				if(isset($arr->$handle)) {
+					unset($all->$handle);
 					$version = $pkg->pkgVersion;
 					$m = $arr->$handle;
 					if(version_compare($m->version, $version, '>')) {
@@ -24,6 +26,7 @@ class DashboardApiCoreUpdatesController extends DashboardBaseController {
 			}
 
 			$this->set('list', $n);
+			$this->set('all', (array) $all);
 		} else {
 			$this->set('error', t('Unable to check for updates.'));
 		}
