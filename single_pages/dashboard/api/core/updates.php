@@ -64,11 +64,10 @@ echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Upda
 				echo '<tr><td colspan="4">'.t('There are no other packages available at this time.').'</td></tr>';
 			} else {
 				foreach($all as $handle => $arr) { 
-					$pkg = Package::getByHandle($handle);
 					?>
 					<tr>
 						<td>
-							<?php echo $pkg->getPackageName();?>
+							<?php echo $arr->name;?>
 						</td>
 						<td>
 							<?php echo $arr->version;?>
