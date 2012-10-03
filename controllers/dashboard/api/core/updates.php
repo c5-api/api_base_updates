@@ -88,6 +88,8 @@ class DashboardApiCoreUpdatesController extends DashboardBaseController {
 
 		if($error) {
 			$this->error->add($error[0]);
+		} else {
+			$this->set('success', t('Package Successfuly downloaded and unzipped. Please <a href="%s">install</a> or <a href="%s">update</a> the package.', View::url('/dashboard/extend/install/'), View::url('/dashboard/extend/update/')));
 		}
 		$this->view();
 	}
@@ -108,7 +110,6 @@ class DashboardApiCoreUpdatesController extends DashboardBaseController {
 
 		$ret = @shell_exec(DIR_FILES_BIN_UNZIP . ' ' . $fh->getTemporaryDirectory() . '/' . $file . ' -d ' . $fh->getTemporaryDirectory() . '/' . $directory . '/');
 		$files = $fh->getDirectoryContents($fh->getTemporaryDirectory() . '/' . $directory);
-		echo $directory;
 		if (count($files) == 0) {
 			throw new Exception(t('There was an error unpacking the file. You may have chosen an invalid package, or you do not have zip installed.'));
 		} else {
