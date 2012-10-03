@@ -30,8 +30,14 @@ class ApiBaseUpdatesPackage extends Package {
 		$pkg = Package::getByHandle($this->pkgHandle);
 		$p = SinglePage::add('/dashboard/api/core/updates',$pkg);
 		$p->update(array('cName'=> t('Updates')));
+		$p->setAttribute('icon_dashboard', 'icon-refresh');
 
 		
+	}
+
+	public function upgrade() {
+		$p = Page::getByPath('/dashboard/api/core/updates');
+		$p->setAttribute('icon_dashboard', 'icon-refresh');
 	}
 	
 	public function uninstall() {
