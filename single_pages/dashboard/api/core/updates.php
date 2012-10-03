@@ -24,6 +24,14 @@ echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Upda
 			} else {
 				foreach($list as $handle => $arr) { 
 					$pkg = Package::getByHandle($handle);
+					$npkg = Loader::package($handle);
+					if($pkg->getPackageVersion() < $npkg->getPackageVersion()) { //we need an update
+						$dlurl = View::url('/dashboard/extend/update/do_update', 'api_base_updates');
+						$dltxt = t('Update');
+					} else {
+						$dlurl = $this->action('get', $handle);
+						$dltxt = t('Download');
+					}
 					?>
 					<tr>
 						<td>
@@ -33,7 +41,7 @@ echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Upda
 							<?php echo $arr->version;?>
 						</td>
 						<td>
-							<a href="<?php echo $this->action('get', $handle);?>"><?php echo t('Download')?></a>
+							<a href="<?php echo $dlurl?>"><?php echo $dltxt?></a>
 						</td>
 					</tr>
 				<?php }
